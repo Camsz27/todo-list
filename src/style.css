@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
 * {
   box-sizing: border-box;
@@ -6,8 +6,10 @@
   margin: 0;
 }
 
-html {
+html,
+body {
   font-family: "Poppins", sans-serif;
+  height: 100%;
 }
 
 #header {
@@ -30,4 +32,63 @@ html {
 #addIcon {
   width: 3.5%;
   margin-left: 33%;
+}
+
+#content {
+  display: flex;
+}
+
+#sidebar {
+  flex-flow: column;
+  height: 88vh;
+  width: 32%;
+  flex: 0 1 auto;
+  background-color: #e8f0f2;
+}
+
+.sidebarIcon {
+  width: 13%;
+  margin-left: 10%;
+  margin-right: 8%;
+}
+
+.sidebarHeader {
+  display: flex;
+  margin-top: 1%;
+  border: 10px solid #e8f0f2;
+}
+
+.sidebar {
+  margin-top: 3%;
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+
+.sidebarHeader:hover {
+  background-color: white;
+  border: 10px solid #e8f0f2;
+}
+
+.projectsHeader {
+  margin: 8% 12% 3%;
+  font-size: 1.5rem;
+}
+
+.projectItem {
+  margin: 2% 25%;
+  font-size: 1.25rem;
+}
+.addProject {
+  display: flex;
+  margin: 2%;
+}
+
+.addIcon {
+  width: 8%;
+  margin-left: 15%;
+}
+
+h4.addProject {
+  color: rgba(0, 0, 0, 50%);
+  font-size: 1.25rem;
 }
