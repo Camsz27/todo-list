@@ -78,6 +78,7 @@ body {
   margin: 2% 25%;
   font-size: 1.25rem;
 }
+
 .addProject {
   display: flex;
   margin: 2%;
@@ -91,4 +92,66 @@ body {
 h4.addProject {
   color: rgba(0, 0, 0, 50%);
   font-size: 1.25rem;
+}
+
+#display {
+  width: 68%;
+}
+
+h1.display {
+  font-weight: 400;
+  margin: 7% 0 0 10%;
+}
+
+li.display {
+  margin: 3% 15%;
+  font-weight: 500;
+  border-bottom: 2px solid #e0e0e0;
+  list-style: none;
+}
+
+.taskContent {
+  display: flex;
+  flex-flow: column;
+  width: 60%;
+}
+
+.displayItems li {
+  display: inline-block;
+}
+
+.taskDate {
+  font-weight: 400;
+  font-size: 0.8rem;
+}
+
+.editIcon {
+  padding-left: 35rem;
+}
+
+.addTask {
+  display: flex;
+  margin-left: 11.75%;
+}
+
+.addTask img {
+  width: 4%;
+  margin-right: 0.25rem;
+}
+
+.addTask h4 {
+  font-weight: bold;
+  color: rgba(0, 0, 0, 50%);
+  position: relative;
+  top: 0.2rem;
+  font-size: 1.25rem;
+}
+
+.displayHeader {
+  display: flex;
+}
+
+#displayHeaderIcon {
+  width: 3.5%;
+  margin: 6.5% 0 0 60%;
 }
