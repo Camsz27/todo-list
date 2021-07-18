@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/Camsz27/todo-list#readme",
   "devDependencies": {
+    "css-loader": "^6.1.0",
+    "date-fns": "^2.22.1",
+    "style-loader": "^3.1.0",
     "webpack": "^5.44.0",
     "webpack-cli": "^4.7.2"
   }
