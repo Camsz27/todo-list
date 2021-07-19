@@ -1,0 +1,3 @@
+function taskFactory() {
+  return {};
+}

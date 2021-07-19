@@ -1,6 +1,7 @@
 import "./style.css";
+import task from "./task";
+import popUp from "./popUp";
 
-console.log("working");
 const container = document.querySelector("#content");
 const title = document.createElement("h1");
 title.textContent = "TodoList";

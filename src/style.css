@@ -155,3 +155,64 @@ li.display {
   width: 3.5%;
   margin: 6.5% 0 0 60%;
 }
+
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modalContent {
+  margin: 15% 40%;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.popUpHeader {
+  background-color: #e8f0f2;
+  padding: 1rem 0.6rem;
+}
+
+form {
+  display: flex;
+  flex-flow: column;
+  background-color: white;
+  padding: 2rem 2rem 0.25rem;
+}
+
+label {
+  font-weight: 500;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+input {
+  height: 1.5rem;
+  border: 2px solid #ddd;
+  margin: 0.75rem 0;
+}
+
+.footer {
+  background-color: white;
+  display: flex;
+  justify-content: flex-end;
+}
+
+button {
+  margin: 1rem 0 0.5rem 1rem;
+  border-radius: 5px;
+  width: 30%;
+  height: 2rem;
+  background-color: #f3f3f3;
+  border: 1px solid #ddd;
+  box-shadow: none;
+}
+
+.addButton {
+  background-color: #ffa500;
+  color: white;
+}
