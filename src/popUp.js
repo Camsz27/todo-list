@@ -1,3 +1,5 @@
+import taskFactory from "./task";
+
 const body = document.querySelector("body");
 
 // Adds event listeners to be able to add projects
@@ -41,7 +43,7 @@ function projectPopUp() {
   addButton.setAttribute("type", "submit");
   addButton.classList.add("addButton");
   addButton.textContent = "Add";
-  addButton.addEventListener("click", removePopUp);
+  //addButton.addEventListener("click", removePopUp);
 
   footer.append(cancelButton, addButton);
   form.append(nameLabel, nameInput, footer);
@@ -65,10 +67,12 @@ function taskPopUp() {
   header.classList.add("popUpHeader");
 
   const form = document.createElement("form");
+  form.setAttribute("onSubmit", "return false");
   const nameLabel = document.createElement("label");
   nameLabel.setAttribute("for", "nameInput");
   nameLabel.textContent = "Name";
   const nameInput = document.createElement("input");
+  nameInput.setAttribute("id", "nameInput");
   nameInput.setAttribute("type", "text");
   nameInput.setAttribute("required", "");
 
@@ -76,6 +80,7 @@ function taskPopUp() {
   dateLabel.setAttribute("for", "dateInput");
   dateLabel.textContent = "Date";
   const dateInput = document.createElement("input");
+  dateInput.setAttribute("id", "dateInput");
   dateInput.setAttribute("type", "date");
 
   const footer = document.createElement("div");
@@ -87,6 +92,7 @@ function taskPopUp() {
   addButton.setAttribute("type", "submit");
   addButton.classList.add("addButton");
   addButton.textContent = "Add";
+  addButton.addEventListener("click", createTask);
   addButton.addEventListener("click", removePopUp);
 
   footer.append(cancelButton, addButton);
@@ -94,4 +100,16 @@ function taskPopUp() {
   content.append(header, form);
   modal.append(content);
   body.append(modal);
+}
+
+function createTask() {
+  const name = document.querySelector("#nameInput").value;
+  const date = document.querySelector("#dateInput").value;
+  console.log(name);
+  console.log(date);
+  const task = taskFactory(name, date);
+  //task.changeName("this is working");
+  console.log("this is working".length);
+  console.log(task.name);
+  console.log(task.date);
 }
