@@ -1,7 +1,7 @@
 const projectFactory = (name) => {
   let tasks = [];
   const addTask = (task) => {
-    if (isNaN(task)) {
+    if (task === undefined) {
       return;
     } else {
       project.tasks.push(task);

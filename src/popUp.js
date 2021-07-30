@@ -108,7 +108,6 @@ function createTask() {
   console.log(name);
   console.log(date);
   const task = taskFactory(name, date);
-  //task.changeName("this is working");
   console.log("this is working".length);
   console.log(task.name);
   console.log(task.date);

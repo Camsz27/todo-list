@@ -132,13 +132,32 @@ li.display {
   font-size: 0.8rem;
 }
 
+.taskIconContainer {
+  position: absolute;
+  left: 85%;
+}
+
 .editIcon {
-  margin-left: 35rem;
+  position: relative;
+  top: 20px;
   cursor: pointer;
 }
 
 .deleteIcon {
+  position: relative;
+  left: 30px;
+  top: 20px;
   cursor: pointer;
+}
+
+.deleteIcon:hover,
+.editIcon:hover,
+.addIcon:hover,
+.addTask img:hover,
+#addIcon:hover,
+#menu:hover,
+#displayHeaderIcon:hover {
+  transform: scale(1.3);
 }
 
 .addTask {
