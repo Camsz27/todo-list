@@ -38,14 +38,18 @@ body {
 
 #content {
   display: flex;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
 }
 
 #sidebar {
   flex-flow: column;
-  height: 88vh;
-  width: 32%;
   flex: 0 1 auto;
   background-color: #e8f0f2;
+  position: absolute;
+  height: 100%;
+  width: 32%;
 }
 
 .sidebarIcon {
@@ -102,12 +106,16 @@ h4.addProject {
 }
 
 #display {
+  position: relative;
+  left: 28%;
   width: 68%;
+  min-height: 88vh;
 }
 
 h1.display {
   font-weight: 400;
-  margin: 7% 0 0 10%;
+  margin: 7% 0% 0 10%;
+  padding-left: 10%;
 }
 
 li.display {
@@ -115,6 +123,7 @@ li.display {
   font-weight: 500;
   border-bottom: 2px solid #e0e0e0;
   list-style: none;
+  width: 77%;
 }
 
 .taskContent {
@@ -162,7 +171,7 @@ li.display {
 
 .addTask {
   display: flex;
-  margin-left: 11.75%;
+  margin-left: 13.75%;
 }
 
 .addTask img {
@@ -186,7 +195,7 @@ li.display {
 
 #displayHeaderIcon {
   width: 3.5%;
-  margin: 6.5% 0 0 60%;
+  margin: 6.5% 0 0 50%;
   cursor: pointer;
 }
 

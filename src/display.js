@@ -1,5 +1,3 @@
-const body = document.querySelector("body");
-
 function displayTask(task) {
   // References for place to append new task
   const taskList = document.querySelector("#taskList");
@@ -8,6 +6,7 @@ function displayTask(task) {
   // Creates elements for new task
   const newTask = document.createElement("li");
   newTask.classList.add("display");
+  newTask.setAttribute("id", task.name);
   const taskItems = document.createElement("ul");
   taskItems.classList.add("displayItems");
 
@@ -49,4 +48,10 @@ function addDeleteIcon() {
   return deleteIconContainer;
 }
 
-export default displayTask;
+function deleteTask(task) {
+  const taskItem = document.getElementById(task.name);
+  console.log(taskItem);
+  taskItem.remove();
+}
+
+export default { displayTask, deleteTask };
