@@ -82,10 +82,21 @@ body {
   font-size: 1.5rem;
 }
 
+.projectList {
+  list-style: none;
+}
+
 .projectItem {
-  margin: 2% 25%;
+  margin: 2% 25% 2% 10%;
+  padding-left: 10%;
   font-size: 1.25rem;
   cursor: pointer;
+}
+
+.active {
+  font-weight: bold;
+  border: 2px solid #a2dbfa;
+  box-shadow: 10px 5px 5px#a2dbfa;
 }
 
 .addProject {
@@ -195,7 +206,9 @@ li.display {
 
 #displayHeaderIcon {
   width: 3.5%;
-  margin: 6.5% 0 0 50%;
+  position: absolute;
+  left: 80%;
+  top: 10%;
   cursor: pointer;
 }
 

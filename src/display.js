@@ -1,12 +1,12 @@
+const taskList = document.querySelector("#taskList");
+
 function displayTask(task) {
-  // References for place to append new task
-  const taskList = document.querySelector("#taskList");
+  // Reference for place to append new task
   const addTask = document.querySelector(".addTask");
 
   // Creates elements for new task
   const newTask = document.createElement("li");
   newTask.classList.add("display");
-  newTask.setAttribute("id", task.name);
   const taskItems = document.createElement("ul");
   taskItems.classList.add("displayItems");
 
@@ -45,13 +45,25 @@ function addDeleteIcon() {
   deleteIcon.classList.add("deleteIcon");
   deleteIcon.setAttribute("src", "../src/images/delete.svg");
   deleteIconContainer.append(deleteIcon);
+  deleteIconContainer.addEventListener("click", deleteTask);
   return deleteIconContainer;
 }
 
-function deleteTask(task) {
-  const taskItem = document.getElementById(task.name);
-  console.log(taskItem);
-  taskItem.remove();
+function deleteTask() {
+  this.parentNode.parentNode.remove();
 }
 
-export default { displayTask, deleteTask };
+function changeProject() {
+  const header = document.querySelector("h1.display");
+  header.textContent = this.textContent;
+  deleteTasks();
+}
+
+function deleteTasks() {
+  const listRemove = Array.from(taskList.children);
+  listRemove.forEach((element) =>
+    element.classList.contains("addTask") ? null : element.remove()
+  );
+}
+
+export default { displayTask, deleteTask, changeProject };

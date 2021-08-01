@@ -13,8 +13,9 @@ const task1 = taskFactory("Reaaaaaaally loooooong nameeeeeee", "Aug 30");
 const task2 = taskFactory("Attempt", "Jul 30");
 
 const project1 = projectFactory("Project 1");
+const project2 = projectFactory("Project 2");
 
 display.displayTask(task1);
 display.displayTask(task2);
-display.deleteTask(task1);
 displayProject(project1);
+displayProject(project2);
