@@ -53,10 +53,15 @@ function deleteTask() {
   this.parentNode.parentNode.remove();
 }
 
-function changeProject() {
+function changeProject(project) {
   const header = document.querySelector("h1.display");
-  header.textContent = this.textContent;
+  header.textContent = project.name;
   deleteTasks();
+  addProjectTasks(project);
+}
+
+function addProjectTasks(project) {
+  project.tasks.forEach((task) => displayTask(task));
 }
 
 function deleteTasks() {

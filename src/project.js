@@ -1,3 +1,5 @@
+let projectList = [];
+
 const projectFactory = (name) => {
   let tasks = [];
   const addTask = (task) => {
@@ -24,7 +26,8 @@ const projectFactory = (name) => {
     }
   };
   const project = { name, tasks, changeName, addTask, deleteTask };
+  projectList.push(project);
   return project;
 };
 
-export default projectFactory;
+export default { projectFactory, projectList };
