@@ -15,25 +15,12 @@ body {
 #header {
   background-color: #a2dbfa;
   display: flex;
-  text-align: center;
+  justify-content: center;
 }
 
 #title {
   font-size: 4rem;
   font-weight: 600;
-}
-
-#menu {
-  width: 3.5%;
-  margin-left: 1.8rem;
-  margin-right: 33%;
-  cursor: pointer;
-}
-
-#addIcon {
-  width: 3.5%;
-  margin-left: 33%;
-  cursor: pointer;
 }
 
 #content {
@@ -52,29 +39,10 @@ body {
   width: 32%;
 }
 
-.sidebarIcon {
-  width: 13%;
-  margin-left: 10%;
-  margin-right: 8%;
-  cursor: pointer;
-}
-
-.sidebarHeader {
-  display: flex;
-  margin-top: 1%;
-  border: 10px solid #e8f0f2;
-  cursor: pointer;
-}
-
 .sidebar {
   margin-top: 3%;
   font-weight: 500;
   font-size: 1.5rem;
-}
-
-.sidebarHeader:hover {
-  background-color: white;
-  border: 10px solid #e8f0f2;
 }
 
 .projectsHeader {

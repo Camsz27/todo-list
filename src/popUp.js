@@ -9,8 +9,6 @@ const projectButtonIcon = document.querySelector("img.addIcon");
 projectButtonIcon.addEventListener("click", projectPopUp);
 
 // Adds event listeners to be able to add tasks
-const inboxAddButton = document.querySelector("#addIcon");
-inboxAddButton.addEventListener("click", taskPopUp);
 const taskButtonText = document.querySelector(".addTask h4");
 taskButtonText.addEventListener("click", taskPopUp);
 const taskButtonIcon = document.querySelector(".addTask img");
