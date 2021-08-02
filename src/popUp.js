@@ -1,4 +1,7 @@
 import taskFactory from "./task";
+import project from "./project";
+import displayProject from "./sideBar";
+import display from "./display";
 
 const body = document.querySelector("body");
 
@@ -25,11 +28,13 @@ function projectPopUp() {
   header.classList.add("popUpHeader");
 
   const form = document.createElement("form");
+  form.setAttribute("onSubmit", "return false");
   const nameLabel = document.createElement("label");
   nameLabel.setAttribute("for", "name");
   nameLabel.textContent = "Name";
   const nameInput = document.createElement("input");
   nameInput.setAttribute("type", "text");
+  nameInput.setAttribute("id", "nameInput");
   nameInput.setAttribute("required", "");
 
   const footer = document.createElement("div");
@@ -41,13 +46,21 @@ function projectPopUp() {
   addButton.setAttribute("type", "submit");
   addButton.classList.add("addButton");
   addButton.textContent = "Add";
-  //addButton.addEventListener("click", removePopUp);
+  addButton.addEventListener("click", createProject);
+  addButton.addEventListener("click", removePopUp);
 
   footer.append(cancelButton, addButton);
   form.append(nameLabel, nameInput, footer);
   content.append(header, form);
   modal.append(content);
-  body.append(modal);
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      createProject();
+      removePopUp();
+    }
+  });
+  body.appendChild(modal);
 }
 
 function removePopUp() {
@@ -97,16 +110,32 @@ function taskPopUp() {
   form.append(nameLabel, nameInput, dateLabel, dateInput, footer);
   content.append(header, form);
   modal.append(content);
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      createTask();
+      removePopUp();
+    }
+  });
   body.append(modal);
 }
 
 function createTask() {
   const name = document.querySelector("#nameInput").value;
   const date = document.querySelector("#dateInput").value;
-  console.log(name);
   console.log(date);
+  if (name === "" || date === "") {
+    alert("Please fill all the fields");
+    return;
+  }
   const task = taskFactory(name, date);
-  console.log("this is working".length);
-  console.log(task.name);
-  console.log(task.date);
+  const project = display.getActive();
+  project.addTask(task);
+  display.displayTask(task);
+}
+
+function createProject() {
+  const name = document.querySelector("#nameInput").value;
+  const newProject = project.projectFactory(name);
+  displayProject(newProject);
 }

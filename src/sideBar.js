@@ -18,7 +18,6 @@ function selectProject() {
   const projects = Array.from(this.parentNode.children);
   projects.forEach((project) => project.classList.remove("active"));
   this.classList.toggle("active");
-  //console.log(this.getAttribute("id"));
   const activeProject = project.projectList.filter(
     (project) => project.name === this.getAttribute("id")
   );

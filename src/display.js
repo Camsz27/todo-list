@@ -1,4 +1,5 @@
 const taskList = document.querySelector("#taskList");
+let active;
 
 function displayTask(task) {
   // Reference for place to append new task
@@ -50,7 +51,11 @@ function addDeleteIcon() {
 }
 
 function deleteTask() {
+  console.log(this.parentNode.querySelector(".taskName"));
   this.parentNode.parentNode.remove();
+  console.log(active.tasks);
+  const taskName = this.parentNode.querySelector(".taskName").textContent;
+  active.tasks = active.tasks.filter((task) => task.name !== taskName);
 }
 
 function changeProject(project) {
@@ -58,6 +63,7 @@ function changeProject(project) {
   header.textContent = project.name;
   deleteTasks();
   addProjectTasks(project);
+  active = project;
 }
 
 function addProjectTasks(project) {
@@ -66,9 +72,16 @@ function addProjectTasks(project) {
 
 function deleteTasks() {
   const listRemove = Array.from(taskList.children);
+  if (listRemove.length === 1) {
+    return;
+  }
   listRemove.forEach((element) =>
     element.classList.contains("addTask") ? null : element.remove()
   );
 }
 
-export default { displayTask, deleteTask, changeProject };
+function getActive() {
+  return active;
+}
+
+export default { displayTask, deleteTask, changeProject, getActive };
