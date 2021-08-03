@@ -10,10 +10,32 @@ function displayTask(task) {
   newTask.classList.add("display");
   const taskItems = document.createElement("ul");
   taskItems.classList.add("displayItems");
-
-  taskItems.append(addTaskInfo(task), addEditIcon(), addDeleteIcon());
+  if (task.completed) {
+    taskItems.classList.add("completed");
+  }
+  taskItems.append(
+    addCheckbox(task),
+    addTaskInfo(task),
+    addEditIcon(),
+    addDeleteIcon()
+  );
   newTask.append(taskItems);
   taskList.insertBefore(newTask, addTask);
+}
+
+function addCheckbox(task) {
+  const item = document.createElement("li");
+  const checkbox = document.createElement("input");
+  checkbox.setAttribute("type", "checkbox");
+  checkbox.setAttribute("id", task.name);
+  checkbox.setAttribute("value", "yes");
+  checkbox.classList.add("checkbox");
+  checkbox.addEventListener("click", checked);
+  item.append(checkbox);
+  if (task.completed) {
+    checkbox.checked = true;
+  }
+  return item;
 }
 
 function addTaskInfo(task) {
@@ -51,9 +73,7 @@ function addDeleteIcon() {
 }
 
 function deleteTask() {
-  console.log(this.parentNode.querySelector(".taskName"));
   this.parentNode.parentNode.remove();
-  console.log(active.tasks);
   const taskName = this.parentNode.querySelector(".taskName").textContent;
   active.tasks = active.tasks.filter((task) => task.name !== taskName);
 }
@@ -82,6 +102,14 @@ function deleteTasks() {
 
 function getActive() {
   return active;
+}
+
+function checked(e) {
+  e.target.parentNode.parentNode.classList.toggle("completed");
+  const task = active.tasks.filter(
+    (task) => e.target.getAttribute("id") === task.name
+  )[0];
+  task.completed = !task.completed;
 }
 
 export default { displayTask, deleteTask, changeProject, getActive };

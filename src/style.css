@@ -127,14 +127,14 @@ li.display {
 
 .editIcon {
   position: relative;
-  top: 20px;
+  top: 10px;
   cursor: pointer;
 }
 
 .deleteIcon {
   position: relative;
   left: 30px;
-  top: 20px;
+  top: 10px;
   cursor: pointer;
 }
 
@@ -240,4 +240,18 @@ button {
 .addButton {
   background-color: #ffa500;
   color: white;
+}
+
+.checkbox {
+  position: relative;
+  width: 23px;
+  height: 23px;
+  margin-right: 15px;
+  top: -10px;
+}
+
+.completed,
+.completed p {
+  opacity: 0.6;
+  text-decoration: line-through;
 }
