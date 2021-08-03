@@ -1,5 +1,4 @@
 import "./style.css";
-import { isPast } from "date-fns/esm";
 import popUp from "./popUp";
 import taskFactory from "./task";
 import project from "./project";
@@ -7,9 +6,7 @@ import display from "./display";
 import displayProject from "./sideBar";
 
 const task1 = taskFactory("Clean house", "Aug 30");
-//task1.changeDate("11 - 03 - 1990");
-//console.log(task6);
-const task2 = taskFactory("Do Homework", "Aug 2");
+const task2 = taskFactory("Do Homework", "Aug 08");
 const task3 = taskFactory("Take dog for a walk", "Aug 13");
 const task4 = taskFactory("Buy groceries", "Aug 17");
 

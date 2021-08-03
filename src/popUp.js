@@ -122,12 +122,12 @@ function taskPopUp() {
 
 function createTask() {
   const name = document.querySelector("#nameInput").value;
-  const date = document.querySelector("#dateInput").value;
-  console.log(date);
+  let date = new Date(document.querySelector("#dateInput").value);
   if (name === "" || date === "") {
     alert("Please fill all the fields");
     return;
   }
+  date = date.toDateString().slice(4, 10);
   const task = taskFactory(name, date);
   const project = display.getActive();
   project.addTask(task);
