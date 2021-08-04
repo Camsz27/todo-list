@@ -1,9 +1,12 @@
-const taskList = document.querySelector("#taskList");
+import popUp from "./popUp";
+import project from "./project";
+
 let active;
 
 function displayTask(task) {
   // Reference for place to append new task
-  const addTask = document.querySelector(".addTask");
+  let taskList = document.querySelector("#taskList");
+  let addTask = document.querySelector(".addTask");
 
   // Creates elements for new task
   const newTask = document.createElement("li");
@@ -79,15 +82,57 @@ function deleteTask() {
 }
 
 function changeProject(project) {
-  const header = document.querySelector("h1.display");
-  header.textContent = project.name;
-  deleteTasks();
+  const div = document.querySelector("#display");
+  if (div.children.length > 1) {
+    Array.from(div.children).map((element) => element.remove());
+  }
+  addProjectContent();
   addProjectTasks(project);
+  addProjectHeader(project);
   active = project;
 }
 
 function addProjectTasks(project) {
   project.tasks.forEach((task) => displayTask(task));
+}
+
+function addProjectHeader(project) {
+  const display = document.querySelector("#display");
+  const headerContent = document.createElement("a");
+  headerContent.classList.add("displayHeader");
+
+  const header = document.createElement("h1");
+  header.classList.add("display");
+  header.textContent = project.name;
+
+  const editIcon = document.createElement("img");
+  editIcon.setAttribute("id", "displayHeaderIcon");
+  editIcon.setAttribute("alt", "edit icon");
+  editIcon.setAttribute("src", "../src/images/edit.svg");
+  editIcon.addEventListener("click", popUp.editProject);
+
+  headerContent.append(header, editIcon);
+  display.insertBefore(headerContent, display.firstChild);
+}
+
+function addProjectContent() {
+  const div = document.querySelector("#display");
+  const taskContainer = document.createElement("ul");
+  taskContainer.setAttribute("id", "taskList");
+  taskContainer.classList.add("display");
+  const addTaskContainer = document.createElement("li");
+  addTaskContainer.classList.add("addTask");
+  const addTask = document.createElement("img");
+  addTask.setAttribute("src", "../src/images/add.svg");
+  addTask.setAttribute("alt", "add icon");
+  addTask.addEventListener("click", popUp.taskPopUp);
+  const text = document.createElement("h4");
+  text.textContent = "Add Task";
+  text.addEventListener("click", popUp.taskPopUp);
+
+  addTaskContainer.append(addTask, text);
+  taskContainer.append(addTaskContainer);
+  div.append(taskContainer);
 }
 
 function deleteTasks() {
@@ -98,6 +143,10 @@ function deleteTasks() {
   listRemove.forEach((element) =>
     element.classList.contains("addTask") ? null : element.remove()
   );
+}
+
+function deleteHeader() {
+  document.querySelector(".displayHeader").remove();
 }
 
 function getActive() {
@@ -112,4 +161,30 @@ function checked(e) {
   task.completed = !task.completed;
 }
 
-export default { displayTask, deleteTask, changeProject, getActive };
+function changeProjectName() {
+  const newName = document.querySelector("#nameInput").value;
+  active.changeName(newName);
+  const header = document.querySelector("h1.display");
+  header.textContent = newName;
+  const projectSidebar = document.querySelector(".active");
+  projectSidebar.textContent = newName;
+}
+
+function deleteProject() {
+  const projectDel = document.querySelector(".active");
+  projectDel.remove();
+  const display = document.querySelector("#display");
+  Array.from(display.children).forEach((element) => element.remove());
+  project.projectList = project.projectList.filter((element) =>
+    element === active ? null : element
+  );
+}
+
+export default {
+  displayTask,
+  deleteTask,
+  changeProject,
+  getActive,
+  changeProjectName,
+  deleteProject,
+};

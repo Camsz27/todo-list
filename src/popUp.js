@@ -12,10 +12,10 @@ const projectButtonIcon = document.querySelector("img.addIcon");
 projectButtonIcon.addEventListener("click", projectPopUp);
 
 // Adds event listeners to be able to add tasks
-const taskButtonText = document.querySelector(".addTask h4");
+/* const taskButtonText = document.querySelector(".addTask h4");
 taskButtonText.addEventListener("click", taskPopUp);
 const taskButtonIcon = document.querySelector(".addTask img");
-taskButtonIcon.addEventListener("click", taskPopUp);
+taskButtonIcon.addEventListener("click", taskPopUp); */
 
 function projectPopUp() {
   const modal = document.createElement("div");
@@ -139,3 +139,59 @@ function createProject() {
   const newProject = project.projectFactory(name);
   displayProject(newProject);
 }
+
+function editProject() {
+  const modal = document.createElement("div");
+  modal.classList.add("modal");
+  const content = document.createElement("div");
+  content.classList.add("modalContent");
+
+  const header = document.createElement("div");
+  header.setAttribute("id", "headerText");
+  const headerText = document.createElement("h3");
+  headerText.textContent = "Edit project";
+  headerText.classList.add("popUpHeader");
+  const deleteButton = document.createElement("img");
+  deleteButton.setAttribute("id", "deleteButton");
+  deleteButton.setAttribute("src", "../src/images/delete.svg");
+  deleteButton.addEventListener("click", display.deleteProject);
+  deleteButton.addEventListener("click", removePopUp);
+
+  const form = document.createElement("form");
+  form.setAttribute("onSubmit", "return false");
+  const nameLabel = document.createElement("label");
+  nameLabel.setAttribute("for", "name");
+  nameLabel.textContent = "New name";
+  const nameInput = document.createElement("input");
+  nameInput.setAttribute("type", "text");
+  nameInput.setAttribute("id", "nameInput");
+  nameInput.setAttribute("required", "");
+
+  const footer = document.createElement("div");
+  footer.classList.add("footer");
+  const cancelButton = document.createElement("button");
+  cancelButton.textContent = "Cancel";
+  cancelButton.addEventListener("click", removePopUp);
+  const addButton = document.createElement("button");
+  addButton.setAttribute("type", "submit");
+  addButton.classList.add("addButton");
+  addButton.textContent = "Save";
+  addButton.addEventListener("click", display.changeProjectName);
+  addButton.addEventListener("click", removePopUp);
+
+  header.append(headerText, deleteButton);
+  footer.append(cancelButton, addButton);
+  form.append(nameLabel, nameInput, footer);
+  content.append(header, form);
+  modal.append(content);
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      display.changeProjectName();
+      removePopUp();
+    }
+  });
+  body.appendChild(modal);
+}
+
+export default { editProject, taskPopUp };

@@ -255,3 +255,13 @@ button {
   opacity: 0.6;
   text-decoration: line-through;
 }
+
+#headerText {
+  display: flex;
+  background: #e8f0f2;
+}
+
+#deleteButton {
+  cursor: pointer;
+  padding-left: 7.5rem;
+}

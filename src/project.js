@@ -21,7 +21,6 @@ const projectFactory = (name) => {
     if (newName.length <= 0) {
       return;
     } else {
-      console.log(project);
       project.name = newName;
     }
   };
