@@ -168,6 +168,7 @@ function changeProjectName() {
   header.textContent = newName;
   const projectSidebar = document.querySelector(".active");
   projectSidebar.textContent = newName;
+  projectSidebar.setAttribute("id", newName);
 }
 
 function deleteProject() {
