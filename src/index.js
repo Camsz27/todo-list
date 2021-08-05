@@ -1,5 +1,4 @@
 import "./style.css";
-import popUp from "./popUp";
 import taskFactory from "./task";
 import project from "./project";
 import display from "./display";

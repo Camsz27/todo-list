@@ -14,6 +14,7 @@ function displayProject(project) {
   projectList.append(projectItem);
 }
 
+// Changes active project in the sidebar and calls function in display.js to show the tasks of the corresponding project
 function selectProject() {
   const projects = Array.from(this.parentNode.children);
   projects.forEach((project) => project.classList.remove("active"));

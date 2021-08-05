@@ -1,5 +1,3 @@
-import { isPast } from "date-fns/esm";
-
 const taskFactory = (name, date) => {
   let completed = false;
   const changeName = (newName) => {
@@ -10,10 +8,10 @@ const taskFactory = (name, date) => {
     }
   };
   const changeDate = (newDate) => {
-    if (isPast(newDate)) {
+    if (isNaN(newDate.getTime())) {
       return;
     } else {
-      task.date = newDate;
+      task.date = newDate.toDateString().slice(4, 10);
     }
   };
   const changeComplete = () => {

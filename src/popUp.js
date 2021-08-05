@@ -11,12 +11,7 @@ projectButtonText.addEventListener("click", projectPopUp);
 const projectButtonIcon = document.querySelector("img.addIcon");
 projectButtonIcon.addEventListener("click", projectPopUp);
 
-// Adds event listeners to be able to add tasks
-/* const taskButtonText = document.querySelector(".addTask h4");
-taskButtonText.addEventListener("click", taskPopUp);
-const taskButtonIcon = document.querySelector(".addTask img");
-taskButtonIcon.addEventListener("click", taskPopUp); */
-
+// Shows/Creates the dialogue when someone clicks the add icon on project
 function projectPopUp() {
   const modal = document.createElement("div");
   modal.classList.add("modal");
@@ -67,6 +62,7 @@ function removePopUp() {
   document.querySelector(".modal").remove();
 }
 
+// Shows/Creates the dialogue when someone clicks the add icon on task
 function taskPopUp() {
   const modal = document.createElement("div");
   modal.classList.add("modal");
@@ -123,7 +119,7 @@ function taskPopUp() {
 function createTask() {
   const name = document.querySelector("#nameInput").value;
   let date = new Date(document.querySelector("#dateInput").value);
-  if (name === "" || date === "") {
+  if (name === "" || isNaN(date.getTime)) {
     alert("Please fill all the fields");
     return;
   }
@@ -140,6 +136,7 @@ function createProject() {
   displayProject(newProject);
 }
 
+// Shows/Creates the dialogue when someone clicks the edit icon on project
 function editProject() {
   const modal = document.createElement("div");
   modal.classList.add("modal");
@@ -194,4 +191,57 @@ function editProject() {
   body.appendChild(modal);
 }
 
-export default { editProject, taskPopUp };
+// Shows/Creates the dialogue when someone clicks the edit icon on task
+function editTask() {
+  const modal = document.createElement("div");
+  modal.classList.add("modal");
+  const content = document.createElement("div");
+  content.classList.add("modalContent");
+
+  const headerText = document.createElement("h3");
+  headerText.textContent = "Edit task";
+  headerText.classList.add("popUpHeader");
+
+  const form = document.createElement("form");
+  form.setAttribute("onSubmit", "return false");
+  const nameLabel = document.createElement("label");
+  nameLabel.setAttribute("for", "name");
+  nameLabel.textContent = "New name";
+  const nameInput = document.createElement("input");
+  nameInput.setAttribute("type", "text");
+  nameInput.setAttribute("id", "nameInput");
+  nameInput.setAttribute("required", "");
+  const dateLabel = document.createElement("label");
+  dateLabel.setAttribute("for", "dateInput");
+  dateLabel.textContent = "Date";
+  const dateInput = document.createElement("input");
+  dateInput.setAttribute("id", "dateInput");
+  dateInput.setAttribute("type", "date");
+
+  const footer = document.createElement("div");
+  footer.classList.add("footer");
+  const cancelButton = document.createElement("button");
+  cancelButton.textContent = "Cancel";
+  cancelButton.addEventListener("click", removePopUp);
+  const addButton = document.createElement("button");
+  addButton.setAttribute("type", "submit");
+  addButton.classList.add("addButton");
+  addButton.textContent = "Save";
+  addButton.addEventListener("click", display.changeTaskInfo);
+  addButton.addEventListener("click", removePopUp);
+
+  footer.append(cancelButton, addButton);
+  form.append(nameLabel, nameInput, dateLabel, dateInput, footer);
+  content.append(headerText, form);
+  modal.append(content);
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      display.changeTaskInfo();
+      removePopUp();
+    }
+  });
+  body.appendChild(modal);
+}
+
+export default { editProject, taskPopUp, editTask };

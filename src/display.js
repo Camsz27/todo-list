@@ -2,6 +2,7 @@ import popUp from "./popUp";
 import project from "./project";
 
 let active;
+let taskEdit;
 
 function displayTask(task) {
   // Reference for place to append new task
@@ -60,6 +61,8 @@ function addEditIcon() {
   const editIcon = document.createElement("img");
   editIcon.classList.add("editIcon");
   editIcon.setAttribute("src", "../src/images/edit.svg");
+  editIcon.addEventListener("click", taskEdited);
+  editIcon.addEventListener("click", popUp.editTask);
   editIconContainer.append(editIcon);
   return editIconContainer;
 }
@@ -71,16 +74,18 @@ function addDeleteIcon() {
   deleteIcon.classList.add("deleteIcon");
   deleteIcon.setAttribute("src", "../src/images/delete.svg");
   deleteIconContainer.append(deleteIcon);
-  deleteIconContainer.addEventListener("click", deleteTask);
+  deleteIcon.addEventListener("click", deleteTask);
   return deleteIconContainer;
 }
 
 function deleteTask() {
-  this.parentNode.parentNode.remove();
-  const taskName = this.parentNode.querySelector(".taskName").textContent;
+  this.parentNode.parentNode.parentNode.remove();
+  const taskName =
+    this.parentNode.parentNode.querySelector(".taskName").textContent;
   active.tasks = active.tasks.filter((task) => task.name !== taskName);
 }
 
+// Changes the name and tasks that are shown according to the project
 function changeProject(project) {
   const div = document.querySelector("#display");
   if (div.children.length > 1) {
@@ -135,24 +140,12 @@ function addProjectContent() {
   div.append(taskContainer);
 }
 
-function deleteTasks() {
-  const listRemove = Array.from(taskList.children);
-  if (listRemove.length === 1) {
-    return;
-  }
-  listRemove.forEach((element) =>
-    element.classList.contains("addTask") ? null : element.remove()
-  );
-}
-
-function deleteHeader() {
-  document.querySelector(".displayHeader").remove();
-}
-
+// Returns the project that is currently active
 function getActive() {
   return active;
 }
 
+// Changes the status of the task when checked or unchecked
 function checked(e) {
   e.target.parentNode.parentNode.classList.toggle("completed");
   const task = active.tasks.filter(
@@ -181,6 +174,27 @@ function deleteProject() {
   );
 }
 
+// Assigns to the variable the task that is currently being edited
+function taskEdited() {
+  taskEdit = this.parentNode.parentNode.firstChild.firstChild;
+}
+
+function changeTaskInfo() {
+  const taskInfo = taskEdit.parentNode.parentNode.children[1];
+  const nameDisplay = taskInfo.children[0];
+  const dateDisplay = taskInfo.children[1];
+  const task = active.tasks.filter(
+    (task) => taskEdit.getAttribute("id") === task.name
+  )[0];
+  const name = document.querySelector("#nameInput").value;
+  let date = new Date(document.querySelector("#dateInput").value);
+  task.changeDate(date);
+  task.changeName(name);
+  nameDisplay.textContent = task.name;
+  dateDisplay.textContent = task.date;
+  taskEdit.setAttribute("id", task.name);
+}
+
 export default {
   displayTask,
   deleteTask,
@@ -188,4 +202,5 @@ export default {
   getActive,
   changeProjectName,
   deleteProject,
+  changeTaskInfo,
 };
