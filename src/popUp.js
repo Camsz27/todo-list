@@ -120,7 +120,7 @@ function taskPopUp() {
 function createTask() {
   const name = document.querySelector('#nameInput').value;
   let date = new Date(document.querySelector('#dateInput').value);
-  if (name === '' || isNaN(date.getTime)) {
+  if (name === '' || isNaN(date.getTime())) {
     alert('Please fill all the fields');
     return;
   }
