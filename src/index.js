@@ -1,7 +1,4 @@
 import './style.css';
-import addIcon from './images/add.svg';
-import deleteIcon from './images/delete.svg';
-import editIcon from './images/edit.svg';
 import taskFactory from './task';
 import project from './project';
 import display from './display';
